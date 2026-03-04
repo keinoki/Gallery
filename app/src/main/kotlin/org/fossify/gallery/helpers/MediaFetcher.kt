@@ -28,7 +28,7 @@ class MediaFetcher(val context: Context) {
     // on Android 11 we fetch all files at once from MediaStore and have it split by folder, use it if available
     fun getFilesFrom(
         curPath: String, isPickImage: Boolean, isPickVideo: Boolean, getProperDateTaken: Boolean, getProperLastModified: Boolean,
-        getProperFileSize: Boolean, favoritePaths: ArrayList<String>, getVideoDurations: Boolean,
+        getProperFileSize: Boolean, favoritePaths: Set<String>, getVideoDurations: Boolean,
         lastModifieds: HashMap<String, Long>, dateTakens: HashMap<String, Long>, android11Files: HashMap<String, ArrayList<Medium>>?
     ): ArrayList<Medium> {
         val filterMedia = context.config.filterMedia
@@ -286,7 +286,7 @@ class MediaFetcher(val context: Context) {
 
     private fun getMediaInFolder(
         folder: String, isPickImage: Boolean, isPickVideo: Boolean, filterMedia: Int, getProperDateTaken: Boolean,
-        getProperLastModified: Boolean, getProperFileSize: Boolean, favoritePaths: ArrayList<String>,
+        getProperLastModified: Boolean, getProperFileSize: Boolean, favoritePaths: Set<String>,
         getVideoDurations: Boolean, lastModifieds: HashMap<String, Long>, dateTakens: HashMap<String, Long>
     ): ArrayList<Medium> {
         val media = ArrayList<Medium>()
@@ -428,7 +428,7 @@ class MediaFetcher(val context: Context) {
     fun getAndroid11FolderMedia(
         isPickImage: Boolean,
         isPickVideo: Boolean,
-        favoritePaths: ArrayList<String>,
+        favoritePaths: Set<String>,
         getFavoritePathsOnly: Boolean,
         getProperDateTaken: Boolean,
         dateTakens: HashMap<String, Long>
@@ -539,7 +539,7 @@ class MediaFetcher(val context: Context) {
     }
 
     private fun getMediaOnOTG(
-        folder: String, isPickImage: Boolean, isPickVideo: Boolean, filterMedia: Int, favoritePaths: ArrayList<String>,
+        folder: String, isPickImage: Boolean, isPickVideo: Boolean, filterMedia: Int, favoritePaths: Set<String>,
         getVideoDurations: Boolean
     ): ArrayList<Medium> {
         val media = ArrayList<Medium>()

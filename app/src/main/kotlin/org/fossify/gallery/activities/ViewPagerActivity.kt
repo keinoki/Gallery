@@ -208,8 +208,8 @@ class ViewPagerActivity : BaseViewerActivity(), ViewPager.OnPageChangeListener, 
     private var mIsOrientationLocked = false
 
     private var mMediaFiles = ArrayList<Medium>()
-    private var mFavoritePaths = ArrayList<String>()
-    private var mIgnoredPaths = ArrayList<String>()
+    private var mFavoritePaths: MutableSet<String> = mutableSetOf()
+    private var mIgnoredPaths: MutableSet<String> = mutableSetOf()
     private var mOriginalBrightness: Float? = null
 
     private val binding by viewBinding(ActivityMediumBinding::inflate)
@@ -563,7 +563,7 @@ class ViewPagerActivity : BaseViewerActivity(), ViewPager.OnPageChangeListener, 
 
     private fun initFavorites() {
         ensureBackgroundThread {
-            mFavoritePaths = getFavoritePaths()
+            mFavoritePaths = getFavoritePaths().toMutableSet()
         }
     }
 

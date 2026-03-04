@@ -1062,11 +1062,11 @@ fun Context.getOTGFolderChildrenNames(path: String): MutableList<String?>? {
     return getOTGFolderChildren(path)?.map { it.name }?.toMutableList()
 }
 
-fun Context.getFavoritePaths(): ArrayList<String> {
+fun Context.getFavoritePaths(): Set<String> {
     return try {
-        favoritesDB.getValidFavoritePaths() as ArrayList<String>
+        favoritesDB.getValidFavoritePaths().toSet()
     } catch (e: Exception) {
-        ArrayList()
+        emptySet()
     }
 }
 
